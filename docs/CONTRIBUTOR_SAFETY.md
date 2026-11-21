@@ -18,3 +18,22 @@ missing authorization leaves the previous audit record intact. Audit writers
 require their own signature, not an admin role; the record is advisory and must
 never authorize a transaction. No deployed ABI, event or storage layout changes
 are needed. Rollback is reverting these verification-only additions.
+
+## Local diagnostics (#505)
+
+Run `node scripts/contributor-diagnostics.cjs --json` from any directory, or
+`node scripts/contributor-diagnostics.cjs --self-test` for deterministic tests.
+Node 18+ is required. The existing JSON health/count/result fields and exit codes
+are preserved: 0 healthy, 1 failed; unknown options now return 2. `--strict`
+remains accepted (all prerequisite failures are blocking, so there are no warning
+overrides). Checks are read-only and offline, with five-second subprocess limits.
+No wallet, signing key, network permission or admin access is required. Permission
+denial is reported without echoing sensitive subprocess/file error details.
+
+Install missing prerequisites or restore denied read/execute permissions as the
+current user, then rerun the same command. The command never elevates privileges,
+installs dependencies, alters files, or repairs configuration automatically.
+Offline Cargo metadata is only manifest resolution, not a successful build;
+an empty dependency cache may need a separate authorized Cargo fetch. The
+toolchain manifest remains the authority for the WASM target. No contract
+migration is involved; revert the CLI change to restore the previous command.
