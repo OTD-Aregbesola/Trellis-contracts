@@ -12,6 +12,7 @@ on:
       - 'scripts/test-contributor-diagnostics.cjs'
       - 'scripts/release-evidence.cjs'
       - 'scripts/test-release-evidence.cjs'
+      - 'scripts/release-readiness-gate.cjs'
       - '.github/workflows/contributor-safety.yml'
   workflow_dispatch:
 
@@ -24,5 +25,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
-      - name: Test production accessibility modules
-        run: cargo +stable test --manifest-path scripts/contributor-safety/Cargo.toml
+      - name: Test production accessibility and risk modules
+        run: cargo +stable test --locked --manifest-path scripts/contributor-safety/Cargo.toml
+
+  node:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test diagnostics and signed release evidence
+        run: node --test scripts/test-contributor-diagnostics.cjs scripts/test-release-evidence.cjs
