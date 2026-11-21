@@ -1,0 +1,28 @@
+name: Contributor safety
+
+on:
+  pull_request:
+    paths:
+      - 'shared/src/accessibility.rs'
+      - 'shared/src/risk_scoring.rs'
+      - 'shared/src/auth.rs'
+      - 'shared/src/storage.rs'
+      - 'scripts/contributor-safety/**'
+      - 'scripts/contributor-diagnostics.cjs'
+      - 'scripts/test-contributor-diagnostics.cjs'
+      - 'scripts/release-evidence.cjs'
+      - 'scripts/test-release-evidence.cjs'
+      - '.github/workflows/contributor-safety.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Test production accessibility modules
+        run: cargo +stable test --manifest-path scripts/contributor-safety/Cargo.toml

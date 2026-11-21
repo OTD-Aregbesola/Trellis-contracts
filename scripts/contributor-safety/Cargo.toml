@@ -1,0 +1,10 @@
+[package]
+name = "contributor-safety-verification"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[workspace]
+
+[dependencies]
+soroban-sdk = { version = "=21.7.7", features = ["testutils"] }
