@@ -1,4 +1,4 @@
-use crate::{auth, errors::Error, risk_scoring::*};
+use contributor_safety_verification::{auth, errors::Error, risk_scoring::*};
 use soroban_sdk::{contract, contractimpl, testutils::{Address as _, Ledger}, Address, Env};
 
 #[contract]

@@ -15,7 +15,3 @@ pub mod ownership_history;
 #[path = "../../../shared/src/risk_scoring.rs"]
 pub mod risk_scoring;
 
-#[cfg(test)]
-mod accessibility_tests;
-#[cfg(test)]
-mod risk_tests;

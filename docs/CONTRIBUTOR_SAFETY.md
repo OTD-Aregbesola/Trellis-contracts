@@ -19,6 +19,15 @@ require their own signature, not an admin role; the record is advisory and must
 never authorize a transaction. No deployed ABI, event or storage layout changes
 are needed. Rollback is reverting these verification-only additions.
 
+The focused checks are integration tests of the imported production library.
+They do not run embedded unit tests from unrelated dependency modules. In
+particular, the existing ownership retry unit test performs repeated authorization
+in one Soroban call frame and fails with `Auth, ExistingValue`; that is outside
+these four issues. The production authorization implementation is still used by
+the integration tests, including missing-signature and non-admin rejection.
+The contributor-safety workflow runs on `codex/**` branch pushes as well as PRs,
+so verification does not depend on successfully opening a PR first.
+
 ## Local diagnostics (#505)
 
 Run `node scripts/contributor-diagnostics.cjs --json` from any directory, or

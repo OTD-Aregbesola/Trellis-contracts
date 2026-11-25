@@ -1,5 +1,5 @@
-use crate::accessibility::*;
-use crate::errors::Error;
+use contributor_safety_verification::accessibility::*;
+use contributor_safety_verification::errors::Error;
 use soroban_sdk::{contract, contractimpl, symbol_short, testutils::Address as _, Address, Env};
 
 #[contract]
