@@ -14,4 +14,3 @@ pub mod history;
 pub mod ownership_history;
 #[path = "../../../shared/src/risk_scoring.rs"]
 pub mod risk_scoring;
-
