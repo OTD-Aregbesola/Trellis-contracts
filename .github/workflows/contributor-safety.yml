@@ -1,11 +1,31 @@
 name: Contributor safety
 
 on:
+  push:
+    branches: ['codex/**']
+    paths:
+      - 'shared/src/accessibility.rs'
+      - 'shared/src/risk_scoring.rs'
+      - 'shared/src/auth.rs'
+      - 'shared/src/errors.rs'
+      - 'shared/src/history.rs'
+      - 'shared/src/ownership_history.rs'
+      - 'shared/src/storage.rs'
+      - 'scripts/contributor-safety/**'
+      - 'scripts/contributor-diagnostics.cjs'
+      - 'scripts/test-contributor-diagnostics.cjs'
+      - 'scripts/release-evidence.cjs'
+      - 'scripts/test-release-evidence.cjs'
+      - 'scripts/release-readiness-gate.cjs'
+      - '.github/workflows/contributor-safety.yml'
   pull_request:
     paths:
       - 'shared/src/accessibility.rs'
       - 'shared/src/risk_scoring.rs'
       - 'shared/src/auth.rs'
+      - 'shared/src/errors.rs'
+      - 'shared/src/history.rs'
+      - 'shared/src/ownership_history.rs'
       - 'shared/src/storage.rs'
       - 'scripts/contributor-safety/**'
       - 'scripts/contributor-diagnostics.cjs'
